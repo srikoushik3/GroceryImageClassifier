@@ -6,8 +6,7 @@ ImageFile.LOAD_TRUNCATED_IMAGES = True
 grocery_images_dir = '../grocery_images/'
 grocery_images_dir_png = '../grocery_images_png/'
 sorted_img_dirs = sorted(os.listdir(grocery_images_dir))
-sorted_img_dirs = sorted_img_dirs[9:]
-
+sorted_img_dirs = sorted_img_dirs[21:]
 
 for spec_img_dir in sorted_img_dirs:
     img_names = os.listdir(os.path.join(grocery_images_dir, spec_img_dir))

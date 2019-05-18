@@ -15,7 +15,7 @@ img_rows = 5
 img_cols = 5
 
 fig, ax = plt.subplots(img_rows, img_cols, figsize=(25, 50))
-plt.title('Random Grocery Images', fontsize=20)
+plt.subtitle('Random Grocery Images', fontsize=20)
 
 sorted_img_dirs = sorted(os.listdir(grocery_images_dir))
 for row in range(img_rows):

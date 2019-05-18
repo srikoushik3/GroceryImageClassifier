@@ -4,7 +4,7 @@ import pandas as pd
 images_src_path = '../train/'
 images_dest_path = '../grocery_images/'
 
-dir_df = pd.read_csv('../train.csv')
+dir_df = pd.read_csv('image_labels.csv')
 
 print(dir_df.head())
 
