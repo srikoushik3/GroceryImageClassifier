@@ -21,7 +21,9 @@ class_to_ind = {}
 ind_to_class = {}
 
 # Load dataset images and resize to meet minimum width and height pixel size
-def load_images(root, frac, min_side=299):
+def load_images(root, min_side=299):
+    #while True:
+    frac = 0.05
     all_imgs = []
     all_classes = []
     resize_count = 0
@@ -61,25 +63,25 @@ def load_images(root, frac, min_side=299):
     print(len(all_imgs), 'images loaded')
     print(resize_count, 'images resized')
     print(invalid_count, 'images skipped')
-    return np.array(all_imgs), np.array(all_classes)
+    #X_train, y_train = np.array(all_imgs), np.array(all_classes)
+    #yield tuple(zip(X_train, y_train))
+    return np.array(all_imgs).reshape(-1), np.array(all_classes)
 
 def image_generator():
+    #while True:
     # load the test sets when needed, and clear the X_train variables
     #X_test, y_test = load_images(TEST_PATH, frac=0.3, min_side=299)
-    X_train, y_train = load_images(TRAIN_PATH, frac=0.1, min_side=299)
-
+    X_train, y_train = load_images(TRAIN_PATH, frac=0.05, min_side=299)
+    '''
     # shuffle
     temp_df = pd.DataFrame({'x': X_train, 'y': y_train})
     temp_df = temp_df.sample(frac=1)
     X_train = temp_df.x.to_numpy()
     y_train = temp_df.y.to_numpy()
+    '''
+    yield tuple(zip(X_train, y_train))
 
-    return tuple(zip(X_train, y_train))
-
-if __name__ == '__main__':
-    classes = os.listdir(TRAIN_PATH)
-    ind_to_class = dict(zip(range(len(classes)), classes))
-    class_to_ind = {c:i for i, c in ind_to_class.items()}
-    print(class_to_ind)
-
-    img_tuple = image_generator()
+classes = os.listdir(TRAIN_PATH)
+ind_to_class = dict(zip(range(len(classes)), classes))
+class_to_ind = {c:i for i, c in ind_to_class.items()}
+print(class_to_ind)
